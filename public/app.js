@@ -1,31 +1,39 @@
-const addCat = function() {
-  // parent element ul class = "cat"
-  // child element li Name: <name>
-  // as above li Favourite food: <food>
-  // as above li img width="500" src=""
-
-  let parentCat = document.createElement("ul");
-  parentCat.classList.add("cat");
-  let name = document.createElement("li");
-  name.innerText = "Name: Chicken";
-  parentCat.append(name);
-  let food = document.createElement("li");
-  food.innerText = "Favourite Food: Cat Food";
-  parentCat.append(food);
-  let image = document.createElement("img");
-  image.width = 500
-  image.src = "cat_photo.jpeg";
-  let picture = document.createElement("li");
-  picture.appendChild(image);
-  parentCat.append(picture);
-
-  let cats = document.querySelector("#cats");
-  cats.appendChild(parentCat);
+const createCat = function() {
+  let cat = document.createElement("ul");
+  return cat;
 }
 
+const nameCat = function(name) {
+  let nameTag = document.createElement("li");
+  nameTag.innerText = `Name: ${name}`;
+  return nameTag;
+}
 
+const faveFood = function(food) {
+  let foodTag = document.createElement("li");
+  foodTag.innerText = `Favourite Food: ${food}`;
+  return foodTag;
+}
+
+const image = function(path) {
+  let imgLi = document.createElement("li");
+  let imgTag = document.createElement("img");
+  imgTag.width = 500;
+  imgTag.src = path;
+  imgLi.appendChild(imgTag);
+  return imgLi;
+}
+
+const addCat = function(name, food, path) {
+  let cat = createCat();
+  cat.appendChild(nameCat(name));
+  cat.appendChild(faveFood(food));
+  cat.appendChild(image(path));
+  let cats = document.querySelector("#cats");
+  cats.appendChild(cat);
+}
 
 const app = function() {
-  addCat();
+  addCat("Chicken", "Pizza", "cat_photo.jpeg");
 }
 window.onload = app;
